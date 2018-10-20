@@ -1,0 +1,103 @@
+//Author Name: Austin Benny
+//Program Name: K-Shift Decoder/Encoder
+//Create Date: 6/16/2018
+//Program Function: This program will take a phrase (inlclusding uppercase and non-alpabetic charecters) 
+//and shift all the alphabetic charecters by some user-specified shift value k.
+
+
+//the encrypt part is working but to get the code to run 100% well you have to fix the issue with a
+
+#include <iostream>
+#include <string>
+
+using std::cout;
+using std::endl;
+using std::cin;
+using std::string;
+
+string encrypt(string phrase, int k)
+{
+    string new_phrase = "";
+    for (int i = 0 ; i < phrase.length(); i++)
+    {
+        if (isalpha(phrase[i]))
+        {
+            if (isupper(phrase[i]))
+            {
+                new_phrase += char(int((int)phrase[i] + k - 65)%26 + 65);
+            }
+            else
+            {
+                new_phrase += char(int((int)phrase[i] + k - 97)%26 + 97);
+            } 
+        }
+        else
+        {
+            new_phrase += phrase[i];
+        }
+    }
+    return new_phrase;
+}
+
+string decrypt (string phrase, int k)
+{
+    string new_phrase = "";
+    for (int i = 0 ; i < phrase.length(); i++)
+    {
+        if (isalpha(phrase[i]))
+        {
+            if ((isupper(phrase[i])) && (phrase[i] == 'A'))
+            {
+                new_phrase += char(int((int)phrase[i] - k - 65)%26 + 66);
+            }
+            else if (phrase[i] == 'a')
+            {
+                new_phrase += char(int((int)phrase[i] - k - 97)%26 + 98);
+            } 
+            else if (isupper(phrase[i]))
+            {
+                new_phrase += char(int((int)phrase[i] - k - 65)%26 + 65);
+            }
+            else
+            {
+                new_phrase += char(int((int)phrase[i] - k - 97)%26 + 97);
+            }
+        }
+        else
+        {
+            new_phrase += phrase[i];
+        }
+    }
+    return new_phrase;
+}
+
+int main()
+{
+    string choose =  "", phrase = "";
+    int k;
+
+    cout << "Type either encrypt or decrypt" << endl;
+    getline(cin, choose);
+
+    cout << "What is the secret key " << endl;
+    cin >> k;
+    cin.ignore();
+
+    cout << "What is the phrase? " << endl;
+    getline(cin, phrase);
+
+    if (choose == "encrypt")
+    {
+        cout << "The encrypted result is: " << encrypt(phrase, k) << endl;
+    }
+    else if (choose == "decrypt")
+    {   
+        cout << "The encrypted result is: " << decrypt(phrase, k) << endl;
+    }
+    else
+    {
+        cout << "NOT VALID INPUT: Make sure you typed encrypt or decrypt correctly, try again" << endl;
+        return 0;
+    }
+    return 0;
+}
