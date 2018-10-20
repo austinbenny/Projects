@@ -1,0 +1,41 @@
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+struct inputs 
+{
+    double x, y, C, A, B;
+};
+
+double calculate(inputs tri1, inputs tri2)
+{
+    tri1.C = sqrt(pow(tri1.x,2)+pow(tri1.y,2));
+    tri1.A = atan(tri1.y/tri1.x)*(180/M_PI);
+    tri1.B = 180 - 90 - tri1.A;
+    tri2.C = sqrt(pow(tri2.x,2)+pow(tri2.y,2));
+    tri2.A = atan(tri2.y/tri2.x)*(180/M_PI);
+    tri2.B = 180 - 90 - tri2.A;
+
+    cout << "Triangle 1 (hyp, angle A, angle B) = " << tri1.C << " , " << tri1.A << " , " << tri1.B << endl;
+    cout << "Triangle 2 (hyp, angle A, angle B) = " << tri2.C << " , " << tri2.A << " , " << tri2.B << endl;
+
+}
+
+int main()
+{
+    inputs tri1, tri2;
+    cout << "Triangle 1 side x: " << endl;
+    cin >>  tri1.x;
+    cout << "Triangle 1 side y: " << endl;
+    cin >>  tri1.y;
+    cout << "Triangle 2 side x: " << endl;
+    cin >>  tri2.x;
+    cout << "Triangle 2 side y: " << endl;
+    cin >>  tri2.y;
+
+    calculate(tri1, tri2);
+}
+
+
