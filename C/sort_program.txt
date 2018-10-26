@@ -1,0 +1,70 @@
+/* 
+Author: Austin Benny
+Program function: This program acts much like the sort function in MATLAB. In this program, the user inputs
+vector size and limit, and this C++ program sorts the vector in ascending order. The random vector will be an
+n size vector containing all floats.
+
+MATLAB sort function: https://www.mathworks.com/help/matlab/ref/sort.html
+*/
+
+#include <iostream>
+#include <vector>
+#include <random>
+#include <algorithm>//contains remove
+
+using std::vector;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::min_element;
+
+void print(vector<float> &vec)
+{
+        for (auto &i: vec) 
+                cout << i << ' '; 
+        cout << endl;
+}
+
+vector <float> sort(vector<float> values)
+{
+        int length = values.size();
+        vector<float> sorted(values.size());
+        for(int i = 0; i<length;i++)
+        {
+                auto min = *min_element(values.begin(), values.end());
+                sorted.push_back(min);
+                values.erase(remove(values.begin(), values.end(),min), values.end()); 
+        }
+        sorted.erase(sorted.begin(),sorted.begin() + length);
+        return sorted;
+}
+
+vector<float>  random_vector(int length, float between)
+{
+        float r = 0;
+        vector<float> randV;
+        for(int i=0; i<length; i++)
+        {
+                r = between*rand()/RAND_MAX;
+                randV.push_back(r); 
+        }
+        return randV;
+}
+ 
+int main()
+{
+        int length;
+        float between;
+        cout << "What is your vector size? " ;
+        cin >> length;
+        cout << "Limit of random vector values: ";
+        cin >> between;
+        vector<float> values = random_vector(length,between);
+        cout << "Random vector: " << endl;
+        print(values);
+        vector<float> sorted = sort(values);
+        cout << "Sorted vector: " << endl;
+        print(sorted);
+        return 0;
+}
+
