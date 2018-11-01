@@ -13,23 +13,23 @@ class triangle{
     private:
         double x,y;
     public:
-        triangle(){}//default constructor
-        triangle( double a, double b){ x = a; y = b;};//secondary constructor
+        triangle(){}//default constructor function
+        triangle( double a, double b){ x = a; y = b;}//secondary constructor function
         //methods
-        double hyp () { return sqrt((x*x)+(y*y));};
-        double angA () { return atan(y/x)*(180/M_PI);};
-        double angB () { return atan(x/y)*(180/M_PI);};
+        double hyp () { return sqrt((x*x)+(y*y));}
+        double angA () { return atan(y/x)*(180/M_PI);}
+        double angB () { return atan(x/y)*(180/M_PI);}
         //accessor functions
-        double geta(){return x;};
-        double getb(){return y;};
+        double geta(){return x;}
+        double getb(){return y;}
         //not used - setter functions
-        void set(double new_a, double new_b){y=new_b;x=new_a;};
+        void set(double new_a, double new_b){y=new_b;x=new_a;}
 };
+
 
 int main(){
     
-    double a;
-    double b;
+    double a, b;
     cout<<" Give me side a: ";
     cin>>a;
     cout<<" Give me side b: ";
