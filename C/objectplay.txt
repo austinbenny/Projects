@@ -1,0 +1,50 @@
+/* 
+Author: Austin Benny
+Program function: Experimenting with objects.
+Object program that calculates triangle hypotnuse and angles.
+*/
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class triangle{
+    private:
+        double x,y;
+    public:
+        triangle(){}//default constructor
+        triangle( double a, double b){ x = a; y = b;};//secondary constructor
+        //methods
+        double hyp () { return sqrt((x*x)+(y*y));};
+        double angA () { return atan(y/x)*(180/M_PI);};
+        double angB () { return atan(x/y)*(180/M_PI);};
+        //accessor functions
+        double geta(){return x;};
+        double getb(){return y;};
+        //not used - setter functions
+        void set(double new_a, double new_b){y=new_b;x=new_a;};
+};
+
+int main(){
+    
+    double a;
+    double b;
+    cout<<" Give me side a: ";
+    cin>>a;
+    cout<<" Give me side b: ";
+    cin>>b;
+    triangle tri = triangle(a,b);//creation of object tri
+    /* or     
+    triangle tri;
+    tri.set(a,b);
+    */
+
+    cout<<"With a side a of "<<tri.geta()<<" and a side b of "<<tri.getb()<<" you get a hypotnuse of "<<tri.hyp()<<endl;
+    cout<<"Angle A, in degrees, of the triangle is: "<< tri.angA()<<endl;
+    cout<<"Angle B, in degrees, of the triangle is: "<<tri.angB()<<endl;
+
+    tri.set(3.5,4.6);
+    cout<<"Setter trial: With a side a of "<<tri.geta()<<" and a side b of "<<tri.getb()<<" you get a hypotnuse of "<<tri.hyp()<<endl;
+
+}
